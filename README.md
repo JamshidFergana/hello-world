@@ -3,6 +3,12 @@
 Bismillahir Rohmanir Rohim.
 
 '''
+
+                            Online Python Interpreter.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
 import random
 
 WORDS = ['Ar-Rohman', 'Ar-Rohim', 'Al-Molik']
@@ -14,9 +20,9 @@ def return_random_word():
 
 def user_handle_input():
     user_input = input('Please input a letter: ')
-    if user_input not in 'abcdefghijklmnopqistuvwxyz':
-        print('Please input a string!')
-        return user_input
+    return user_input
+    
+
 
 def get_initial_statuses(word):
     statuses = []
@@ -61,6 +67,9 @@ def main():
         print_word(word, statuses)
         print('Erros left: ', max_errors - current_error)
         letter = user_handle_input()
+        if letter not in 'qwertyuiopasdfghjklxzcvbnm-':
+            print('Please input only String!')
+        
         result = perform_check_action(word, statuses, letter)
         
         if not result:
