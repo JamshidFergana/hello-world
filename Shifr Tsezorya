@@ -41,12 +41,16 @@ def getTranslateMessage(mode, message, key):
             translated += symbols[symbolIndex]
     return translated
 
-mode = getMode()
-message = getMessage()
-if mode[0] != 'b':
-    key = getKey()
-    print('Tuslangan Tekst:')
-    print(getTranslateMessage(mode, message, key))
-else:
-    for key in range(1, max_key + 1):
-        print(key, getTranslateMessage('razshifrovka', message, key))
+while True:
+    mode = getMode()
+    message = getMessage()
+    if mode[0] != 'b':
+        key = getKey()
+        print('Tuslangan Tekst:')
+        print(getTranslateMessage(mode, message, key))
+    else:
+        for key in range(1, max_key + 1):
+            print(key, getTranslateMessage('razshifrovka', message, key))
+    print('Yana hizmat bormi? (bor yoki yoq)')
+    if not input().lower().startswith('b'):
+        break
