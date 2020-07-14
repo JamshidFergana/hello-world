@@ -1,53 +1,59 @@
-encoding = '# -*- coding: ascii -*-'
-SYMBOLS = 'АБВГДЕЁЖЗИЙКЛМНОПКРСТУФХЦЧЩШЫЬЪЭЮЯабвгдеёжзийлмнопкрстуфхцчщшыьъэюя'
-MAX_KEY_SIZE = len(SYMBOLS)
+'''
+
+                            Online Python Interpreter.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+# -*- coding: ascii -*-
+symbols = 'QWERTYUIOPASDFGHJKLXZCVBNMqwertyuiopasdfghjklzxcvbnm'
+max_key = len(symbols)
 
 def getMode():
+    print('Nima qilamiz: zashifrovka, razshifrovka yo buzish?')
     while True:
-        print('Сиз расшифровка киласизми ё зашифровка ё бузишми?')
         mode = input().lower()
-        if mode in ('зашифровка', 'з', 'расшифровка', 'р', 'бузиш', 'б'):
-            return mфode
+        if mode in ('zashifrovka z razshifrovka r buzish b').split():
+            return mode
         else:
-            print('зашифровка, з, расшифровка, р, бузиш, б - шулардан бирини киритинг!')
-            
-def getMessage():
-    print('Текстни киритинг, илтимос')
-    return input()
+            print('zashifrovka, z, razshifrovka, r, buzish, b - shularni kiriting')
 
+def getMessage():
+    print('Tekstni kiriting.')
+    return input()
+    
 def getKey():
     key = 0
     while True:
-        print('Shifrovka kalitini kiriting: (1 - %s)' % (MAX_KEY_SIZE))
+        print('Shifr kalitini kiriting: (1 - %s)' % (max_key))
         key = int(input())
-        if (key >= 1 and key <= MAX_KEY_SIZE):
+        if (key >=1 and key <= max_key):
             return key
 
 def getTranslateMessage(mode, message, key):
-    if mode[0] == 'р':
+    if mode[0] == 'r':
         key = -key
-    translated = ''    
-
+    translated = ''
+    
     for symbol in message:
-        symbolIndex = SYMBOLS.find(symbol)
+        symbolIndex = symbols.find(symbol)
         if symbolIndex == -1:
             translated += symbol
         else:
             symbolIndex += key
-            if symbolIndex >= len(SYMBOLS):
-                symbolIndex -= len(SYMBOLS)
+            if symbolIndex >= max_key:
+                symbolIndex -= max_key
             elif symbolIndex < 0:
-                symbolIndex += len(SYMBOLS)
-            translated += SYMBOLS[symbolIndex]
+                symbolIndex += max_key
+            translated += symbols[symbolIndex]
     return translated
 
 mode = getMode()
 message = getMessage()
-if mode[0] != 'б':
+if mode[0] != 'b':
     key = getKey()
-print('Tuslangan tekst: ')
-if mode[0] != 'б':
+    print('Tuslangan Tekst:')
     print(getTranslateMessage(mode, message, key))
 else:
-    for key in range(1, MAX_KEY_SIZE + 1):
-        print(key, getTranslateMessage('расшифровка', message, key))
+    for key in range(1, max_key + 1):
+        print(key, getTranslateMessage('razshifrovka', message, key))
